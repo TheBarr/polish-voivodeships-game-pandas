@@ -12,8 +12,11 @@ all_voivodeships = data.voivodeship.to_list()
 guessed_voivodeships = []
 
 while len(guessed_voivodeships) < 17:
-    answer_voivodeship = screen.textinput(title=f"Guess the voivodeship {len(guessed_voivodeships)}/16",
-                                          prompt="What's another voivodeship name?").title()
+    try:
+        answer_voivodeship = screen.textinput(title=f"Guess the voivodeship {len(guessed_voivodeships)}/16",
+                                              prompt="What's another voivodeship name?").title()
+    except AttributeError:
+        break
     if answer_voivodeship == "Exit":
         voivodeships_to_learn = []
         for voivodeship in all_voivodeships:
