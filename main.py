@@ -18,11 +18,8 @@ while len(guessed_voivodeships) < 17:
     except AttributeError:
         break
     if answer_voivodeship == "Exit":
-        voivodeships_to_learn = []
-        for voivodeship in all_voivodeships:
-            if voivodeship not in guessed_voivodeships:
-                voivodeships_to_learn.append(voivodeship)
-
+        voivodeships_to_learn = [voivodeship for voivodeship in all_voivodeships if
+                                 voivodeship not in guessed_voivodeships]
         df = pandas.DataFrame(voivodeships_to_learn, columns=["To Learn"])
         df.to_csv('voivodeships_to_learn.csv', index=False)
         break
@@ -35,4 +32,3 @@ while len(guessed_voivodeships) < 17:
         pointer.speed("fastest")
         pointer.setposition(voiv.x.iloc[0], voiv.y.iloc[0])
         pointer.write(voiv.voivodeship.item(), font=("Arial", 10, "bold"))
-
